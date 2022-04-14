@@ -42,3 +42,17 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 }
+
+afterEvaluate {
+    publishing {
+        publications {
+// Creates a Maven publication called "release".
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.pataa.addressautofill'//Application id
+                artifactId = 'pataa_autofill_sdk'//Root project name
+                version = '1.0.0' //Version
+            }
+        }
+    }
+}
