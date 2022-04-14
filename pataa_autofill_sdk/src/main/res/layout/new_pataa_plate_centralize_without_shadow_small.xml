@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/vPlateContainer"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:background="@drawable/rounded_yellow_sharp_corner_drawable_small"
+            android:id="@+id/vPlate"
+            android:layout_height="@dimen/_40sdp_pataa"
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:background="@drawable/rounded_white_sharp_left_corner_drawable_small_new_logo"
+                android:gravity="center"
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_height="@dimen/_30sdp_pataa"
+                    android:layout_marginLeft="@dimen/_8sdp_pataa"
+                    android:layout_marginRight="@dimen/_7sdp_pataa"
+                    android:layout_width="@dimen/_28sdp_pataa"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/new_logo__" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:autoSizeMaxTextSize="@dimen/pataa_txt_size_15_sp"
+                    android:autoSizeMinTextSize="@dimen/pataa_txt_size_15_sp"
+                    android:background="@color/color_00000000"
+                    android:editable="false"
+                    android:ellipsize="end"
+                    android:focusable="false"
+                    android:fontFamily="@font/avenir_next_demi_bold"
+                    android:gravity="center"
+                    android:hint="^PATAA"
+                    android:id="@+id/edtPataaCode"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_8sdp_pataa"
+                    android:layout_marginRight="@dimen/_9sdp_pataa"
+                    android:layout_width="wrap_content"
+                    android:maxLength="30"
+                    android:minWidth="@dimen/_30sdp_pataa"
+                    android:singleLine="true"
+                    android:textColor="@color/color_181B21"
+                    android:textColorHint="@color/color_181B21_20_per"
+                    android:textCursorDrawable="@drawable/cursor_color"
+                    android:textSize="@dimen/pataa_txt_size_15_sp" />
+
+                <!--                    <com.victorminerva.widget.edittext.AutofitEdittext-->
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:background="@color/color_00000000"
+                    android:editable="false"
+                    android:ellipsize="end"
+                    android:focusable="false"
+                    android:fontFamily="@font/mulish_medium"
+                    android:gravity="center"
+                    android:hint="^123JOHN"
+                    android:id="@+id/edtName"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_8sdp_pataa"
+                    android:layout_marginRight="@dimen/_9sdp_pataa"
+                    android:layout_marginTop="@dimen/_minus1sdp_pataa"
+                    android:layout_width="wrap_content"
+                    android:maxLength="30"
+                    android:minWidth="@dimen/_30sdp_pataa"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textAllCaps="true"
+                    android:textColor="@color/color_181B21"
+                    android:textColorHint="@color/color_181B21_20_per"
+                    android:textCursorDrawable="@drawable/cursor_color"
+                    android:textSize="@dimen/pataa_txt_size_11_sp"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/vBlankSpace"
+            android:layout_height="@dimen/_1sdp_pataa"
+            android:layout_width="@dimen/_10sdp_pataa"
+            app:layout_constraintRight_toRightOf="@+id/vPlate"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/topGradient"
+            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/gradient_for_pataa_plate_top_small"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/vVerifiedSpace"
+        android:layout_height="@dimen/_1sdp_pataa"
+        android:layout_width="@dimen/_10sdp_pataa"
+        app:layout_constraintRight_toRightOf="@id/vPlateContainer"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/vVerified"
+        android:layout_height="0dp"
+        android:layout_marginLeft="@dimen/_minus25sdp_pataa"
+        android:layout_marginVertical="@dimen/_5sdp_pataa"
+        android:layout_width="@dimen/_30sdp_pataa"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/vVerifiedSpace"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_verified_pataa_detail" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/vDrone"
+        android:layout_height="0dp"
+        android:layout_marginLeft="@dimen/_11sdp_pataa"
+        android:layout_marginVertical="@dimen/_5sdp_pataa"
+        android:layout_width="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/vPlateContainer"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_drone_icon_blue" />
+</androidx.constraintlayout.widget.ConstraintLayout>

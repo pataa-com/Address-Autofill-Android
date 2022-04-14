@@ -1,0 +1,755 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/_10sdp_pataa"
+        android:layout_marginTop="@dimen/_15sdp_pataa"
+        android:layout_marginBottom="@dimen/_15sdp_pataa"
+        app:cardBackgroundColor="@color/color_00000000"
+        tools:ignore="MissingConstraints">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/llCreatePataa"
+                android:layout_alignParentTop="true"
+                android:fillViewport="true"
+                android:scrollbars="none">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_ffffff">
+
+                    <RelativeLayout
+                        android:id="@+id/rlLogo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivLogo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_30sdp_pataa"
+                            android:src="@drawable/ic_logo_what_is_pataa_dialog_header_caret" />
+
+
+                    </RelativeLayout>
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvUniqueTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rlLogo"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_10sdp_pataa"
+                        android:fontFamily="@font/mulish_medium"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:paddingHorizontal="@dimen/_12sdp_pataa"
+                        android:text="@string/Pataa_is_your_unique_personalized_"
+                        android:textColor="@color/color_181B21"
+                        android:textSize="@dimen/pataa_txt_size_15_sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/rlLogo" />
+
+
+                    <RelativeLayout
+                        android:id="@+id/rlPlate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@+id/tvUniqueTitle"
+                        android:layout_marginHorizontal="@dimen/_45sdp_pataa"
+                        android:layout_marginTop="@dimen/_3sdp_pataa"
+                        app:layout_constraintTop_toBottomOf="@+id/tvUniqueTitle"
+                        tools:layout_editor_absoluteX="59dp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_50sdp_pataa"
+                            android:layout_marginTop="@dimen/_10sdp_pataa"
+                            android:layout_marginBottom="@dimen/_10sdp_pataa"
+                            android:src="@drawable/ic_dot_rectangle" />
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvDigitalTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/_2sdp_pataa"
+                            android:background="@color/color_ffffff"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/mulish_medium"
+                            android:gravity="center"
+                            android:maxWidth="@dimen/_160sdp_pataa"
+                            android:paddingHorizontal="@dimen/_3sdp_pataa"
+                            android:singleLine="true"
+                            android:text="@string/Digital_Address_Code_"
+                            android:textColor="@color/color_181B21"
+                            android:textSize="@dimen/pataa_txt_size_15_sp"
+                            android:textStyle="bold"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent" />
+
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tvDigitalTitle"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/_20sdp_pataa"
+                            android:background="@color/color_ffffff"
+                            android:paddingHorizontal="@dimen/_5sdp_pataa">
+
+                            <include
+                                android:id="@+id/vPataaPlate"
+                                layout="@layout/new_pataa_plate_centralize_without_shadow_small"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </RelativeLayout>
+
+
+                    </RelativeLayout>
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvContainsTag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rlPlate"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginHorizontal="@dimen/_10sdp_pataa"
+                        android:layout_marginTop="@dimen/_15sdp_pataa"
+                        android:background="@color/color_ffffff"
+                        android:fontFamily="@font/mulish_medium"
+                        android:gravity="center"
+                        android:paddingHorizontal="@dimen/_5sdp_pataa"
+                        android:text="@string/your_pataa_contains_the_following_"
+                        android:textColor="@color/color_181B21"
+                        android:textSize="@dimen/pataa_txt_size_13_sp"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/rlPlate"
+                        tools:ignore="MissingConstraints" />
+
+                    <RelativeLayout
+                        android:id="@+id/rlInfoWindow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@+id/tvContainsTag"
+                        android:layout_marginHorizontal="@dimen/_12sdp_pataa"
+                        android:layout_marginTop="@dimen/_10sdp_pataa"
+                        android:background="@drawable/ic_arrow_box_bg"
+                        app:layout_constraintTop_toBottomOf="@+id/tvContainsTag">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_10sdp_pataa"
+                            android:layout_marginTop="@dimen/_15sdp_pataa"
+                            android:layout_marginRight="@dimen/_10sdp_pataa"
+                            android:layout_marginBottom="@dimen/_15sdp_pataa"
+                            android:orientation="vertical">
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="@dimen/_2sdp_pataa"
+                                    android:layout_weight=".5"
+                                    android:orientation="horizontal">
+
+
+                                    <androidx.appcompat.widget.AppCompatImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/ic_accurate_location" />
+
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="@dimen/_10sdp_pataa"
+                                        android:fontFamily="@font/mulish_medium"
+                                        android:text="@string/accurate_location_on_the_map_"
+                                        android:textColor="@color/color_4F5560"
+                                        android:textSize="@dimen/pataa_txt_size_11_sp"
+                                        tools:ignore="MissingConstraints" />
+
+
+                                </LinearLayout>
+
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/_2sdp_pataa"
+                                    android:layout_weight=".5"
+                                    android:orientation="horizontal">
+
+                                    <androidx.appcompat.widget.AppCompatImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/ic_address_explain" />
+
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="@dimen/_10sdp_pataa"
+                                        android:fontFamily="@font/mulish_medium"
+                                        android:text="@string/your_address_explained_in_you_own_voice_"
+                                        android:textColor="@color/color_4F5560"
+                                        android:textSize="@dimen/pataa_txt_size_11_sp"
+                                        tools:ignore="MissingConstraints" />
+
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_10sdp_pataa"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="@dimen/_2sdp_pataa"
+                                    android:layout_weight=".5"
+                                    android:orientation="horizontal">
+
+
+                                    <androidx.appcompat.widget.AppCompatImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/ic_suggested_route" />
+
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="@dimen/_10sdp_pataa"
+                                        android:fontFamily="@font/mulish_medium"
+                                        android:text="@string/suggested_routes_from_landmarks_"
+                                        android:textColor="@color/color_4F5560"
+                                        android:textSize="@dimen/pataa_txt_size_11_sp"
+                                        tools:ignore="MissingConstraints" />
+
+
+                                </LinearLayout>
+
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/_2sdp_pataa"
+                                    android:layout_weight=".5"
+                                    android:orientation="horizontal">
+
+                                    <androidx.appcompat.widget.AppCompatImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/ic_property" />
+
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="@dimen/_10sdp_pataa"
+                                        android:fontFamily="@font/mulish_medium"
+                                        android:text="@string/Address_and_photos_of_your_property_"
+                                        android:textColor="@color/color_4F5560"
+                                        android:textSize="@dimen/pataa_txt_size_11_sp"
+                                        tools:ignore="MissingConstraints" />
+
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                    </RelativeLayout>
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvPataaCreateTag"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@+id/rlInfoWindow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp_pataa"
+                        android:background="@color/color_ffffff"
+                        android:fontFamily="@font/mulish_medium"
+                        android:gravity="center"
+                        android:paddingHorizontal="@dimen/_12sdp_pataa"
+                        android:text="@string/Create_your_Pataa_now_start_sharing_with_"
+                        android:textColor="@color/color_181B21"
+                        android:textSize="@dimen/pataa_txt_size_13_sp"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/rlInfoWindow"
+                        tools:ignore="MissingConstraints" />
+
+                    <LinearLayout
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@+id/tvPataaCreateTag"
+                        android:id="@+id/llSharing"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp_pataa"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="@dimen/_30sdp_pataa"
+                        app:layout_constraintTop_toBottomOf="@+id/tvPataaCreateTag">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight=".33"
+                                android:gravity="center_horizontal"
+                                android:orientation="vertical">
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_delivery_guys" />
+
+
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight=".33"
+                                android:gravity="center_horizontal"
+                                android:orientation="vertical">
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_visitors" />
+
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight=".33"
+                                android:gravity="center_horizontal"
+                                android:orientation="vertical">
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_online_shoping" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight=".33"
+                                android:gravity="center_horizontal"
+                                android:orientation="vertical">
+
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginTop="@dimen/_5sdp_pataa"
+                                    android:fontFamily="@font/mulish_medium"
+                                    android:gravity="center_horizontal"
+                                    android:text="@string/Delivery_Guys_"
+                                    android:textColor="@color/color_181B21"
+                                    android:textSize="@dimen/pataa_txt_size_11_sp"
+                                    android:textStyle="bold"
+                                    tools:ignore="MissingConstraints" />
+
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight=".33"
+                                android:gravity="center_horizontal"
+                                android:orientation="vertical">
+
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginTop="@dimen/_5sdp_pataa"
+                                    android:fontFamily="@font/mulish_medium"
+                                    android:gravity="center_horizontal"
+                                    android:text="@string/Visitors_"
+                                    android:textColor="@color/color_181B21"
+                                    android:textSize="@dimen/pataa_txt_size_11_sp"
+                                    android:textStyle="bold"
+                                    tools:ignore="MissingConstraints" />
+
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight=".33"
+                                android:gravity="center_horizontal"
+                                android:orientation="vertical">
+
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginTop="@dimen/_5sdp_pataa"
+                                    android:fontFamily="@font/mulish_medium"
+                                    android:gravity="center_horizontal"
+                                    android:text="@string/Online_Shops_"
+                                    android:textColor="@color/color_181B21"
+                                    android:textSize="@dimen/pataa_txt_size_11_sp"
+                                    android:textStyle="bold"
+                                    tools:ignore="MissingConstraints" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:gravity="center_vertical"
+                        android:id="@+id/llPataaBenefit"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:layout_below="@+id/llSharing"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_15sdp_pataa"
+                        android:background="@color/color_FFCC4B"
+                        android:orientation="vertical"
+                        android:paddingLeft="@dimen/_15sdp_pataa"
+                        android:paddingTop="@dimen/_15sdp_pataa"
+                        android:paddingRight="@dimen/_15sdp_pataa"
+                        android:paddingBottom="@dimen/_15sdp_pataa"
+
+                        app:layout_constraintTop_toBottomOf="@+id/llSharing">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/mulish_medium"
+                            android:text="@string/Millions_of_Indians_are_using_Pataa_for_"
+                            android:textColor="@color/color_181B21"
+                            android:textSize="@dimen/pataa_txt_size_15_sp"
+                            android:textStyle="bold"
+                            tools:ignore="MissingConstraints" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp_pataa"
+                                android:fontFamily="@font/mulish_medium"
+                                android:text="\u2022"
+                                android:textColor="@color/color_181B21"
+                                android:textSize="@dimen/pataa_txt_size_13_sp"
+                                tools:ignore="MissingConstraints" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_2sdp_pataa"
+                                android:layout_marginTop="@dimen/_5sdp_pataa"
+                                android:fontFamily="@font/mulish_medium"
+                                android:text="@string/Faster_checkout_on_ecommerce_"
+                                android:textColor="@color/color_181B21"
+                                android:textSize="@dimen/pataa_txt_size_13_sp"
+                                tools:ignore="MissingConstraints" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginTop="@dimen/_1sdp_pataa"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_2sdp_pataa"
+                                android:fontFamily="@font/mulish_medium"
+                                android:text="\u2022"
+                                android:textColor="@color/color_181B21"
+                                android:textSize="@dimen/pataa_txt_size_13_sp"
+                                tools:ignore="MissingConstraints" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_2sdp_pataa"
+                                android:layout_marginTop="@dimen/_2sdp_pataa"
+                                android:fontFamily="@font/mulish_medium"
+                                android:text="@string/no_more_explaining_address_on_calls_bullet_"
+                                android:textColor="@color/color_181B21"
+                                android:textSize="@dimen/pataa_txt_size_13_sp"
+                                tools:ignore="MissingConstraints" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginTop="@dimen/_1sdp_pataa"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_2sdp_pataa"
+                                android:fontFamily="@font/mulish_medium"
+                                android:text="\u2022"
+                                android:textColor="@color/color_181B21"
+                                android:textSize="@dimen/pataa_txt_size_13_sp"
+                                tools:ignore="MissingConstraints" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_2sdp_pataa"
+                                android:layout_marginTop="@dimen/_2sdp_pataa"
+                                android:fontFamily="@font/mulish_medium"
+                                android:text="@string/Hassle_free_deliveries_"
+                                android:textColor="@color/color_181B21"
+                                android:textSize="@dimen/pataa_txt_size_13_sp"
+                                tools:ignore="MissingConstraints" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginTop="@dimen/_1sdp_pataa"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_2sdp_pataa"
+                                android:fontFamily="@font/mulish_medium"
+                                android:text="\u2022"
+                                android:textColor="@color/color_181B21"
+                                android:textSize="@dimen/pataa_txt_size_13_sp"
+                                tools:ignore="MissingConstraints" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_2sdp_pataa"
+                                android:layout_marginTop="@dimen/_2sdp_pataa"
+                                android:fontFamily="@font/mulish_medium"
+                                android:text="@string/Saving_fuel_reducing_pollution_"
+                                android:textColor="@color/color_181B21"
+                                android:textSize="@dimen/pataa_txt_size_13_sp"
+                                tools:ignore="MissingConstraints" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/bottom"
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent" />
+
+                </RelativeLayout>
+
+            </ScrollView>
+
+            <RelativeLayout
+                android:id="@+id/rlCross"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                tools:ignore="MissingConstraints">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btnCross"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp_pataa"
+                    android:layout_marginRight="@dimen/_10sdp_pataa"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_dialog_cross"
+                    tools:ignore="MissingConstraints" />
+
+
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:id="@+id/llCreatePataa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@color/color_181B21"
+                android:gravity="center"
+                android:padding="@dimen/_15sdp_pataa"
+                tools:ignore="MissingConstraints">
+
+                <LinearLayout
+                    android:id="@+id/llDontPataa"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_weight=".65"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/mulish_medium"
+                        android:singleLine="true"
+                        android:text="@string/Dont_have_a_Pataa_yet_"
+                        android:textColor="@color/color_ffffff"
+                        android:textSize="@dimen/pataa_txt_size_13_sp"
+                        android:textStyle="bold"
+                        tools:ignore="MissingConstraints" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/mulish_medium"
+                            android:singleLine="true"
+                            android:text="@string/eg__"
+                            android:textColor="@color/color_ffffff"
+                            android:textSize="@dimen/pataa_txt_size_12_sp"
+                            android:textStyle="bold"
+                            tools:ignore="MissingConstraints" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvPataaOne"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_2sdp_pataa"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/mulish_medium"
+                            android:singleLine="true"
+                            android:text="@string/kumar100__"
+                            android:textColor="@color/color_ffffff"
+                            android:textSize="@dimen/pataa_txt_size_12_sp"
+                            android:textStyle="bold"
+                            tools:ignore="MissingConstraints" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvPataaTwo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/mulish_medium"
+                            android:singleLine="true"
+                            android:text="@string/singh221__"
+                            android:textColor="@color/color_ffffff"
+                            android:textSize="@dimen/pataa_txt_size_12_sp"
+                            android:textStyle="bold"
+                            tools:ignore="MissingConstraints" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/tvCreatePataa"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_5sdp_pataa"
+                    android:layout_toRightOf="@+id/llDontPataa"
+                    android:layout_weight=".35"
+                    android:background="@drawable/rounded_yellow_sharp_corner_drawable"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/mulish_medium"
+                    android:gravity="center"
+                    android:paddingHorizontal="@dimen/_2sdp_pataa"
+                    android:paddingVertical="@dimen/_8sdp_pataa"
+                    android:singleLine="true"
+                    android:text="@string/create_pataa_"
+                    android:textColor="@color/color_181B21"
+                    android:textSize="@dimen/pataa_txt_size_12_sp" />
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

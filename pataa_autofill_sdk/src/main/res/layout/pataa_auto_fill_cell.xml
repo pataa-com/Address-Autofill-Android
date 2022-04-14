@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/vPataaCodeView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minWidth="@dimen/_200sdp_pataa">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:id="@+id/vContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_black_border"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/_30sdp_pataa"
+                        android:layout_height="@dimen/_30sdp_pataa"
+                        android:layout_margin="@dimen/_10sdp_pataa"
+                        android:src="@drawable/ic_logo" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/edtHint"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/color_00000000"
+                            android:fontFamily="@font/mulish_regular"
+                            android:gravity="center_vertical"
+                            android:hint="@string/Enter_Pataa_eg_KUMAR100"
+                            android:paddingHorizontal="@dimen/_5sdp_pataa"
+                            android:singleLine="true"
+                            android:textColor="@color/color_DBDBDB"
+                            android:textSize="@dimen/pataa_txt_size_13_sp" />
+
+                        <TextView
+                            android:id="@+id/edtCaret"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@color/color_00000000"
+                            android:fontFamily="@font/avenir_next_demi_bold"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="@dimen/_5sdp_pataa"
+                            android:text="^"
+                            android:textColor="@color/color_1C1C1C"
+                            android:visibility="gone"
+                            android:textSize="@dimen/pataa_txt_size_20_sp" />
+
+                        <EditText
+                            android:id="@+id/edtPataaEntry"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_toRightOf="@+id/edtCaret"
+                            android:background="@color/color_00000000"
+                            android:fontFamily="@font/mulish_medium"
+                            android:gravity="center_vertical"
+                            android:inputType="textPersonName|textCapCharacters"
+                            android:textColor="@color/color_1C1C1C"
+                            android:paddingRight="@dimen/_5sdp_pataa"
+                            android:imeOptions="actionSearch"
+                            android:textCursorDrawable="@drawable/cursor_color"
+                            android:textSize="@dimen/pataa_txt_size_20_sp" />
+
+                    </RelativeLayout>
+
+                    <!--add address-->
+                    <LinearLayout
+                        android:id="@+id/btnAddAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/_1sdp_pataa"
+                        android:background="@drawable/bg_button"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:layout_width="1sp"
+                            android:layout_height="match_parent"
+                            android:layout_marginVertical="@dimen/_1sdp_pataa"
+                            android:background="@color/color_DBDBDB" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/_1sdp_pataa"
+                            android:fontFamily="@font/mulish_semibold"
+                            android:gravity="center"
+                            android:paddingHorizontal="@dimen/_10sdp_pataa"
+                            android:text="@string/Add_Address"
+                            android:textAllCaps="true"
+                            android:textColor="@color/color_181B21"
+                            android:textSize="@dimen/pataa_txt_size_11_sp" />
+                    </LinearLayout>
+
+                    <!--Cross Pataa Not Found-->
+                    <LinearLayout
+                        android:id="@+id/btnCrossPataaNotFound"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/_1sdp_pataa"
+                        android:gravity="center"
+                        android:paddingHorizontal="@dimen/_15sdp_pataa"
+                        android:visibility="gone">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="@dimen/_20sdp_pataa"
+                            android:layout_height="@dimen/_20sdp_pataa"
+                            android:src="@drawable/ic_red_cross" />
+                    </LinearLayout>
+
+                    <!--tick Pataa Found-->
+                    <LinearLayout
+                        android:id="@+id/btnGreenTickPataaFound"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/_1sdp_pataa"
+                        android:gravity="center"
+                        android:paddingHorizontal="@dimen/_15sdp_pataa"
+                        android:visibility="gone">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="@dimen/_20sdp_pataa"
+                            android:layout_height="@dimen/_20sdp_pataa"
+                            android:src="@drawable/ic_green_tick" />
+                    </LinearLayout>
+
+                    <!--auto fill-->
+                    <LinearLayout
+                        android:id="@+id/btnAutoFill"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/_1sdp_pataa"
+                        android:background="@drawable/bg_button"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <View
+                            android:layout_width="1sp"
+                            android:layout_height="match_parent"
+                            android:layout_marginVertical="@dimen/_1sdp_pataa"
+                            android:background="@color/color_DBDBDB" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/_1sdp_pataa"
+                            android:fontFamily="@font/mulish_semibold"
+                            android:gravity="center"
+                            android:paddingLeft="@dimen/_10sdp_pataa"
+                            android:paddingRight="@dimen/_5sdp_pataa"
+                            android:text="@string/Autofill"
+                            android:textAllCaps="true"
+                            android:textColor="@color/color_181B21"
+                            android:textSize="@dimen/pataa_txt_size_11_sp" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="@dimen/_10sdp_pataa"
+                            android:layout_height="@dimen/_10sdp_pataa"
+                            android:layout_marginRight="@dimen/_10sdp_pataa"
+                            android:src="@drawable/ic_next_arrow" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--click here-->
+                <LinearLayout
+                    android:id="@+id/vClickHere"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_1sdp_pataa"
+                    android:background="@drawable/bg_black_bottom_round_corner"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/mulish_medium"
+                        android:paddingLeft="@dimen/_7sdp_pataa"
+                        android:text="@string/or"
+                        android:textColor="@color/color_F2F2F2"
+                        android:textSize="@dimen/pataa_txt_size_12_sp" />
+
+                    <TextView
+                        android:id="@+id/tvClickHere"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/mulish_semibold"
+                        android:paddingHorizontal="@dimen/_5sdp_pataa"
+                        android:paddingVertical="@dimen/_5sdp_pataa"
+                        android:paddingLeft="@dimen/pataa_txt_size_12_sp"
+                        android:text="@string/click_here"
+                        android:textColor="@color/color_FFCC4B" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/mulish_medium"
+                        android:paddingRight="@dimen/_5sdp_pataa"
+                        android:singleLine="true"
+                        android:text="@string/after_click_here"
+                        android:textColor="@color/color_F2F2F2"
+                        android:textSize="@dimen/pataa_txt_size_12_sp" />
+                </LinearLayout>
+
+                <!--create Now-->
+                <LinearLayout
+                    android:id="@+id/vCreateNow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_1sdp_pataa"
+                    android:background="@drawable/bg_red_bottom_round_corner"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/mulish_medium"
+                        android:paddingLeft="@dimen/_7sdp_pataa"
+                        android:text="@string/please_enter_a_valid_Pataa_or"
+                        android:textColor="@color/color_F2F2F2"
+                        android:textSize="@dimen/pataa_txt_size_12_sp" />
+
+                    <TextView
+                        android:id="@+id/tvCreateNow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/mulish_semibold"
+                        android:paddingHorizontal="@dimen/_5sdp_pataa"
+                        android:paddingVertical="@dimen/_5sdp_pataa"
+                        android:paddingLeft="@dimen/pataa_txt_size_12_sp"
+                        android:text="@string/create_now"
+                        android:textColor="@color/color_FFCC4B" />
+                </LinearLayout>
+
+                <!--valid pataa-->
+                <LinearLayout
+                    android:id="@+id/vValidPataa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_1sdp_pataa"
+                    android:background="@drawable/bg_green_bottom_round_corner"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/tvShipTo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/mulish_medium"
+                        android:paddingHorizontal="@dimen/_5sdp_pataa"
+                        android:paddingVertical="@dimen/_5sdp_pataa"
+                        android:paddingLeft="@dimen/_7sdp_pataa"
+                        android:singleLine="true"
+                        android:text="@string/ship_to"
+                        android:textColor="@color/color_F2F2F2"
+                        android:textSize="@dimen/pataa_txt_size_12_sp" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <!--what is pataa-->
+            <LinearLayout
+                android:id="@+id/vWhatIsPataa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="@dimen/_5sdp_pataa"
+                android:layout_marginBottom="@dimen/_5sdp_pataa"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/mulish_medium"
+                    android:paddingHorizontal="@dimen/_5sdp_pataa"
+                    android:paddingVertical="@dimen/_5sdp_pataa"
+                    android:paddingLeft="@dimen/_7sdp_pataa"
+                    android:singleLine="true"
+                    android:text="@string/what_is_pataa"
+                    android:textColor="@color/color_181B21"
+                    android:textSize="@dimen/pataa_txt_size_10_sp" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/_15sdp_pataa"
+                    android:layout_height="@dimen/_15sdp_pataa"
+                    android:src="@drawable/ic_what_is_pataa" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

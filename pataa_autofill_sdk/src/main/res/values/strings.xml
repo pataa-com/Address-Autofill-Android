@@ -1,0 +1,43 @@
+<resources>
+    <string name="create_pataa_web_url">https://pataa.com/create-pataa.html</string>
+    <string name="create_pataa_web_url_development">https://pataa.in/create-pataa/create-pataa.html</string>
+
+    <string name="Enter_Pataa_eg_KUMAR100">Enter Pataa eg ^KUMAR100</string>
+    <string name="Add_Address">Add Address</string>
+    <string name="Autofill">Autofill</string>
+    <string name="or">or</string>
+    <string name="ship_to">Ship to: %s</string>
+    <string name="please_enter_a_valid_Pataa_or">Please enter a valid Pataa or</string>
+    <string name="no_internet_connection">No internet connection!</string>
+    <string name="what_is_pataa"><b><u>What’s Pataa?</u></b></string>
+    <string name="click_here"><b><u>click here</u></b></string>
+    <string name="create_now"><b><u>Create now</u></b></string>
+<!--    <string name="create_pataa_web_url">https://wp.pataa.in/</string>-->
+    <string name="after_click_here">to save location on map for faster services</string>
+
+
+    <string name="Pataa_is_your_unique_personalized_"><b>Pataa</b> is your unique &amp; personalized</string>
+    <string name="Digital_Address_Code_">Digital Address Code</string>
+    <string name="your_pataa_contains_the_following_">Your ^pataa contains the following:</string>
+    <string name="accurate_location_on_the_map_">Accurate location on the map</string>
+    <string name="your_address_explained_in_you_own_voice_">Your address explained in your own voice</string>
+    <string name="suggested_routes_from_landmarks_">Suggested routes from landmarks</string>
+    <string name="Address_and_photos_of_your_property_">Address and photos of your property</string>
+    <string name="Create_your_Pataa_now_start_sharing_with_">Create your Pataa now &amp; start sharing with</string>
+    <string name="create_pataa_">Create Pataa</string>
+    <string name="singh221__" translatable="false"><u>^SINGH221</u></string>
+    <string name="kumar100__" translatable="false"><u>^KUMAR100</u>,</string>
+    <string name="eg__">eg.</string>
+    <string name="Dont_have_a_Pataa_yet_">Don\'t have a Pataa yet?</string>
+    <string name="Delivery_Guys_">Delivery Guys</string>
+    <string name="Visitors_">Visitors</string>
+    <string name="Online_Shops_">Online Shops</string>
+    <string name="Millions_of_Indians_are_using_Pataa_for_">Millions of Indians are using Pataa for</string>
+    <string name="Faster_checkout_on_ecommerce_">Faster checkout on e-commerce</string>
+    <string name="Fetch">Fetch</string>
+    <string name="no_more_explaining_address_on_calls_bullet_">No more explaining address on calls</string>
+    <string name="Hassle_free_deliveries_">Hassle-free deliveries</string>
+    <string name="Saving_fuel_reducing_pollution_">Saving fuel &amp; reducing pollution</string>
+
+
+</resources>
