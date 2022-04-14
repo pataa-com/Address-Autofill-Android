@@ -18,6 +18,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
 
+        <meta-data
+            android:name="pataa.autofill.sdk.ClientKey"
+            android:value="@string/PATAA_API_KEY_TESTING" />
+
+        <!--optional-->
+        <meta-data
+            android:name="pataa.autofill.sdk.EnableLogger"
+            android:value="false" />
+    </application>
 </manifest>
