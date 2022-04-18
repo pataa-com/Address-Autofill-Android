@@ -24,7 +24,7 @@
 
         <meta-data
             android:name="pataa.autofill.sdk.ClientKey"
-            android:value="@string/PATAA_API_KEY_TESTING" />
+            android:value="@string/PATAA_API_KEY" />
 
         <meta-data
             android:name="pataa.autofill.sdk.EnableLogger"
