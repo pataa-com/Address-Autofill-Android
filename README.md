@@ -15,7 +15,7 @@
 **Step 2. Add the dependency**
 
 	dependencies {
-	        implementation 'com.github.pataa-com:Address-Autofill-Android:Tag'
+	        implementation 'com.github.pataa-com:Address-Autofill-Android:v1.0.3'
 	}
 
 
@@ -70,8 +70,9 @@
 
            }
 
+
            @Override
-           public void onPataaFound(GetPataaDetailResponse.User user, GetPataaDetailResponse.Pataa
+           public void onPataaFound(User user, Pataa
                    response) {
                Toast.makeText(MainActivity.this, user.getFirst_name() + " : " + response.getFormattedAddress(), Toast.LENGTH_SHORT).show();
            }
@@ -92,5 +93,45 @@
             }
         }
     }
+
+
+**Step 8. Add PATAA api key on string.xml**
+
+
+        <resources>
+    	.....
+		<string name="PATAA_API_KEY">+ipXPwNxxxxxxxxxxxxxxxxxxxxxxxxxxxxxvkk=</string>
+        <resources>
+
+***
+**In case of errors**
+
+        E/PATAA_SDK_LOGS: {"msg":"Invalid App key","status":600}
+        E/PATAA_SDK_LOGS: Invalid App key
+        
+**Solution** : Enable logs from menifest metadata and copy the SHA1 key. Put it on pataa developer console, and then try again you will got the results
+
+***
+        E/PATAA_SDK_LOGS: {"msg":"Your key is deavtivated please generate new","status":200}
+        E/PATAA_SDK_LOGS: Invalid App key
+        
+**Solution** : Enable the key for use on Pataa developer console or Create new key.
+
+***
+        E/PATAA_SDK_LOGS: {"msg":"Pataa Code not found","status":204}
+        E/PATAA_SDK_LOGS: Pataa Code not found
+        
+**Solution** : Try to search with valid pataa code like - KUMAR100, SINGH221, Because your searched pataa code is not created on pataa platform yet.
+
+***        
+**For any other error** : [Please refer the document](https://docs.pataa.com/refrence/#error-handling) 
+
+
+
+
+
+
+
+
 
 
