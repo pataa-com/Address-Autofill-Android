@@ -113,7 +113,7 @@
 
 ***
         E/PATAA_SDK_LOGS: {"msg":"Your key is deavtivated please generate new","status":200}
-        E/PATAA_SDK_LOGS: Invalid App key
+        E/PATAA_SDK_LOGS: Your key is deavtivated please generate new
         
 **Solution** : Enable the key for use on Pataa developer console or Create new key.
 
