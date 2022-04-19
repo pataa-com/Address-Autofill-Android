@@ -92,6 +92,7 @@ public class CreatePataaActivity extends AppCompatActivity {
                 });
             }
         }, "closeWindow");
+
     }
 
     private void checkPermission() {

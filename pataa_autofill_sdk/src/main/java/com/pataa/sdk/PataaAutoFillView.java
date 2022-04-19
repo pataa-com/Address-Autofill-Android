@@ -1,5 +1,6 @@
 package com.pataa.sdk;
 
+import static com.pataa.sdk.AppConstants.ON_ACT_RSLT_PATAA_DATA;
 import static com.pataa.sdk.AppConstants.REFRESS_INTERVAL_FOR_VALIDATION_CHECK;
 import static com.pataa.sdk.AppConstants.metaClientKey;
 import static com.pataa.sdk.AppConstants.metaEnableDebugKey;
@@ -12,6 +13,7 @@ import static com.pataa.sdk.Validation.isPataaCodeValid;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.text.Editable;
@@ -26,6 +28,12 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -36,10 +44,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PataaAutoFillView extends FrameLayout {
+    private ActivityResultLauncher<Intent> launchSomeActivity;
     public static boolean enableLogger;
     public static String sha1;
     private OnAddress address;
-    private Activity activity;
+    private AppCompatActivity activity;
     private View vCreateNow;
     private View vContainer;
     private View vValidPataa;
@@ -73,12 +82,25 @@ public class PataaAutoFillView extends FrameLayout {
         return this;
     }
 
-    public PataaAutoFillView setCurrentActivity(Activity activity) {
+    public PataaAutoFillView setCurrentActivity(AppCompatActivity activity) {
         this.activity = activity;
+        launchSomeActivity = activity.registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        if (result.getResultCode() == Activity.RESULT_OK) {
+                            Intent data = result.getData();
+                            String pc = data.getStringExtra(ON_ACT_RSLT_PATAA_DATA);
+                            if (pc != null) {
+                                getPataadetail(pc);
+                            }
+                        }
+                    }
+                });
         return this;
     }
 
-    public Activity getCurrentActivity() {
+    public AppCompatActivity getCurrentActivity() {
         if (activity == null) {
             Logger.e("Current activity object is required please se the data on \nsetCurrentActivity(ACTIVITY);");
             return null;
@@ -219,7 +241,8 @@ public class PataaAutoFillView extends FrameLayout {
     private void callCreatePataa() {
         if (getCurrentActivity() != null) {
             String url = vContainer.getContext().getString(Utill.getMetaBoolean(vContainer.getContext(), metaEnableDevelopmentKey()) ? R.string.create_pataa_web_url_development : R.string.create_pataa_web_url);
-            getCurrentActivity().startActivityForResult(CreatePataaActivity.createPataa(vContainer.getContext(), url, getMeta(getContext(), metaClientKey())), AppConstants.REQUEST_KEY_CREATE_PATAA);
+            Intent intent = CreatePataaActivity.createPataa(vContainer.getContext(), url, getMeta(getContext(), metaClientKey()));
+            launchSomeActivity.launch(intent);
         }
     }
 
