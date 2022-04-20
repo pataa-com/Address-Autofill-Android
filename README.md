@@ -2,8 +2,15 @@
 
 ![image](https://user-images.githubusercontent.com/103625941/163770534-6cec5e08-00c1-48f5-9ab8-4db4027aa820.png)
 
+![image](https://user-images.githubusercontent.com/103625941/164167880-9334e305-62e1-47b1-86c2-1e336a40e481.png)
 
-**Step 1. Add it in your root build.gradle at the end of repositories:**
+![image](https://user-images.githubusercontent.com/103625941/164168176-cdf9148e-98e3-4dd4-8bb7-e19b1400ef8e.png)
+
+
+**Step 1. Add it in your root build.gradle/settings.gradle at the end of repositories**
+
+**In root build.gradle**
+
 
 	allprojects {
 		repositories {
@@ -11,11 +18,25 @@
 			maven { url 'https://jitpack.io' }
 		}
 	}
+	
+
+**OR**
+	
+**In settings.gradle**
+
+
+	dependencyResolutionManagement {
+        repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+        repositories {
+            ...
+            maven { url 'https://jitpack.io' }
+        }
+    }
 
 **Step 2. Add the dependency**
 
 	dependencies {
-	        implementation 'com.github.pataa-com:Address-Autofill-Android:v1.0.3'
+	        implementation 'com.github.pataa-com:Address-Autofill-Android:v1.0.4'
 	}
 
 
@@ -32,7 +53,7 @@
 
 
 
-**Step 4. Add view on xml**
+**Step 4. Add view on xml(Don't change the id)**
 
 
         <com.pataa.sdk.PataaAutoFillView
@@ -42,22 +63,10 @@
 
 
 
-**Step 5. Create an object in activity**
+**Step 5. Set properties and listener(Only for JAVA)**, For kotlin skip this step
 
 
-        PataaAutoFillView pataaAddress;
-
-
-**Step 6. Initialize the object**
-
-
-        pataaAddress = findViewById(com.pataa.sdk.R.id.vPataaCodeView);
-
-
-**Step 7. Set properties and listener**
-
-
-        pataaAddress
+        ((PataaAutoFillView) findViewById(R.id.vPataaCodeView))
        .setCurrentActivity(this)//to get the result of create pataa
        .setAddressCallBack(new OnAddress() {//to get the click events
            @Override
@@ -79,23 +88,28 @@
        });
 
 
-**Step 8. Add on activity result**
+**Step 6. Set properties and listener(Only for Kotlin)**, For Java skip this step
 
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+        findViewById<PataaAutoFillView>(R.id.vPataaCodeView)
+            .setCurrentActivity(this)
+            .setAddressCallBack(object : OnAddress {
+                override fun onNetworkIsNotAvailable() {
+                    Toast.makeText(applicationContext, "onNetworkIsNotAvailable", Toast.LENGTH_SHORT).show();
+                }
 
-        if (requestCode == REQUEST_KEY_CREATE_PATAA && data != null && data.hasExtra(ON_ACT_RSLT_PATAA_DATA)) {
-            String pc = data.getStringExtra(ON_ACT_RSLT_PATAA_DATA);
-            if (pataaAddress != null) {
-                pataaAddress.getPataadetail(pc);
-            }
-        }
-    }
+                override fun onPataaNotFound(message: String?) {
+
+                }
+
+                override fun onPataaFound(user: User?, response: Pataa?) {
+                    Toast.makeText(applicationContext, user?.getFirst_name() + " : " + response?.getFormattedAddress(), Toast.LENGTH_SHORT).show();
+                }
+            })
 
 
-**Step 8. Add PATAA api key on string.xml**
+
+**Step 7. Add PATAA api key on string.xml**
 
 
         <resources>
@@ -109,11 +123,11 @@
         E/PATAA_SDK_LOGS: {"msg":"Invalid App key","status":600}
         E/PATAA_SDK_LOGS: Invalid App key
         
-**Solution** : Enable logs from menifest metadata and copy the SHA1 key. Put it on pataa developer console, and then try again you will got the results
+**Solution** : Enable logs from manifest metadata and copy the SHA1 key. Put it on pataa developer console, and then try again you will got the results
 
 ***
         E/PATAA_SDK_LOGS: {"msg":"Your key is deavtivated please generate new","status":200}
-        E/PATAA_SDK_LOGS: Your key is deavtivated please generate new
+        E/PATAA_SDK_LOGS: Invalid App key
         
 **Solution** : Enable the key for use on Pataa developer console or Create new key.
 
