@@ -16,14 +16,11 @@ import com.pataa.sdk.PataaAutoFillView;
 import com.pataa.sdk.User;
 
 public class MainActivity extends AppCompatActivity {
-    private PataaAutoFillView pataaAddress;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        pataaAddress = findViewById(com.pataa.sdk.R.id.vPataaCodeView);
-        pataaAddress
+        ((PataaAutoFillView) findViewById(R.id.vPataaCodeView))
                 .setCurrentActivity(this)//to get the result of create pataa
                 .setAddressCallBack(new OnAddress() {//to get the click events
                     @Override
@@ -41,18 +38,5 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, user.getFirst_name() + " : " + response.getFormattedAddress(), Toast.LENGTH_SHORT).show();
                     }
                 });
-    }
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == REQUEST_KEY_CREATE_PATAA && data != null && data.hasExtra(ON_ACT_RSLT_PATAA_DATA)) {
-            String pc = data.getStringExtra(ON_ACT_RSLT_PATAA_DATA);
-            if (pataaAddress != null) {
-                pataaAddress.getPataadetail(pc);
-            }
-        }
     }
 }
