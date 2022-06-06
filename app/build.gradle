@@ -1,7 +1,11 @@
 plugins {
     id 'com.android.application'
 }
-
+def getDate() {
+    def date = new Date()
+    def formattedDate = date.format('yyyy_MM_dd_HH_mm_ss')
+    return formattedDate
+}
 android {
     compileSdk 32
 
@@ -10,7 +14,8 @@ android {
         minSdk 21
         targetSdk 32
         versionCode 1
-        versionName "1.0"
+        versionName "${getDate()}"
+        setProperty("archivesBaseName", "pataa_autofill_${versionName}")
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

@@ -1,8 +1,9 @@
 package com.pataa.sdk;
 
 public class AppConstants {
-    public static String BASE_URL_DEV = "https://pataa.in:5057/";
+//    public static String BASE_URL_DEV = "https://pataa.in:5057/";
     public static String BASE_URL = "https://apiv1.pataa.com/";
+    public static String BASE_URL_DEV = "https://pataa.in:5059/";
 
     public static int REFRESS_INTERVAL_FOR_VALIDATION_CHECK = 300;
     public static int REQUEST_KEY_CREATE_PATAA = 13531;

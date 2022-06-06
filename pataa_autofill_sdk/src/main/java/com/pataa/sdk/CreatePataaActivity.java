@@ -13,6 +13,7 @@ import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.webkit.GeolocationPermissions;
 import android.webkit.JavascriptInterface;
 import android.webkit.SslErrorHandler;
@@ -25,27 +26,21 @@ import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-public class CreatePataaActivity extends AppCompatActivity {
+public class CreatePataaActivity extends Activity {
     private static String TAG_PARAM_WEB_URL = "TAG_PARAM_WEB_URL";
     private static String TAG_PARAM_API_KEY = "TAG_PARAM_API_KEY";
     private WebView webView;
-    private ActivityResultLauncher<String> requestPermissionLauncher =
-            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-//                if (isGranted) {
-//                } else {
-//                }
-                openCreatePataaFlow();
-            });
+    private static DialogCallback callback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inapp_web);
-
-
         checkPermission();
     }
 
@@ -77,7 +72,9 @@ public class CreatePataaActivity extends AppCompatActivity {
             @JavascriptInterface // For API 17+
             public void performClick(String strl) {
                 Logger.e("create_pataa_data -> " + strl);
-                sendOnlyPataaCode(strl);
+//                sendOnlyPataaCode(strl);
+                callback.Response(strl);
+                finish();
             }
         }, "createPataaCode");
 
@@ -95,15 +92,36 @@ public class CreatePataaActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode == 10)
+        {
+            if (grantResults.length == 0 ||
+                    grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                Log.i("TAG", "User denied ACCESS_COARSE_LOCATION permission.");
+                Toast.makeText(this,"User denied permission.", Toast.LENGTH_SHORT).show();
+                openCreatePataaFlow();
+            } else {
+                //  Toast.makeText(this, R.string.permission_granted, Toast.LENGTH_SHORT).show();
+                Log.i("TAG", "User granted ACCESS_COARSE_LOCATION permission.");
+                openCreatePataaFlow();
+            }
+        }
+    }
+
     private void checkPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             openCreatePataaFlow();
         } else {
-            requestPermissionLauncher.launch(Manifest.permission.ACCESS_COARSE_LOCATION);
+//            requestPermissionLauncher.launch(Manifest.permission.ACCESS_COARSE_LOCATION);
+            ActivityCompat.requestPermissions(this , new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION},
+                    10);
         }
     }
 
-    public static Intent createPataa(Context context, String webUrl, String apiKey) {
+    public static Intent createPataa(Context context, String webUrl, String apiKey, DialogCallback callbacks) {
+        callback = callbacks;
         Intent intent = new Intent(context, CreatePataaActivity.class);
         intent.putExtra(TAG_PARAM_WEB_URL, webUrl);
         intent.putExtra(TAG_PARAM_API_KEY, apiKey);
@@ -162,52 +180,5 @@ public class CreatePataaActivity extends AppCompatActivity {
 
     public void setIsLoading(boolean b) {
 
-    }
-
-//    public void getPataadetail(String pataa) {
-//        String API_KEY = null;
-//        try {
-//            API_KEY = getIntent().getStringExtra("TAG_PARAM_API_KEY");
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        if (Utill.isNotNullOrEmpty(API_KEY) && Utill.isNotNullOrEmpty(pataa)) {
-//            Api.getClient().getPataaDetail(API_KEY,
-////                    pataa.trim().toUpperCase(),
-//                    "KUMAR100",
-//                    new Callback<GetPataaDetailResponse>() {
-//                        @Override
-//                        public void success(GetPataaDetailResponse getPataaDetail, Response response) {
-//                            Logger.e("API responded successfully" + new Gson().toJson(getPataaDetail));
-//
-//                            if (getPataaDetail.status == 200) {
-//                                Intent resultIntent = new Intent();
-//                                resultIntent.putExtra("pataa_data", new Gson().toJson(getPataaDetail.getResult()).toString());
-//                                setResult(Activity.RESULT_OK, resultIntent);
-//                                finish();
-//                            } else {
-//                                Logger.e("API failed" + new Gson().toJson(getPataaDetail));
-//                                sendOnlyPataaCode(pataa);
-//                            }
-//                        }
-//
-//                        @Override
-//                        public void failure(RetrofitError error) {
-//                            Logger.e("API failed" + new Gson().toJson(error));
-//                            sendOnlyPataaCode(pataa);
-//                        }
-//                    });
-//        } else {
-//            Logger.e("unble to use given API_KEY");
-//        }
-//
-//    }
-
-    private void sendOnlyPataaCode(String pataa) {
-        Intent resultIntent = new Intent();
-        resultIntent.putExtra(ON_ACT_RSLT_PATAA_DATA, pataa);
-        setResult(Activity.RESULT_OK, resultIntent);
-        finish();
     }
 }

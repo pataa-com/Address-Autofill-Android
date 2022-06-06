@@ -14,6 +14,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.text.Editable;
@@ -21,12 +22,17 @@ import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.TextSwitcher;
 import android.widget.TextView;
+import android.widget.ViewSwitcher;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -44,12 +50,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PataaAutoFillView extends FrameLayout {
-    private ActivityResultLauncher<Intent> launchSomeActivity;
     public static boolean enableLogger;
     public static String sha1;
     private OnAddress address;
-    private AppCompatActivity activity;
+    private Activity activity;
     private View vCreateNow;
+    private View tvCreateNow;
+    private TextView tvErrorMessage;
     private View vContainer;
     private View vValidPataa;
     private View vClickHere;
@@ -60,20 +67,31 @@ public class PataaAutoFillView extends FrameLayout {
     private AlertDialog whatIsPataaDialog;
     private EditText editText;
     private View btnAutoFill;
+    private Context context;
+    private String apikey = "";
+    private View edtHint2;
+    private View edtHint;
+    private String strings[] = {"^JAINS51", "^SINGH007", "^KUMAR100", "^786ALIF", "^123JOHN"};
+    private int messageCount = strings.length;
+    private int currentIndex = -1;
+
 
     public PataaAutoFillView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        this.context = context;
         initView();
     }
 
     public PataaAutoFillView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        this.context = context;
         initView();
     }
 
     public PataaAutoFillView(Context context, OnAddress onAddress) {
         super(context);
         this.address = onAddress;
+        this.context = context;
         initView();
     }
 
@@ -82,25 +100,18 @@ public class PataaAutoFillView extends FrameLayout {
         return this;
     }
 
-    public PataaAutoFillView setCurrentActivity(AppCompatActivity activity) {
+    public PataaAutoFillView setCurrentActivity(Activity activity, String apikey) {
         this.activity = activity;
-        launchSomeActivity = activity.registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-                new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult(ActivityResult result) {
-                        if (result.getResultCode() == Activity.RESULT_OK) {
-                            Intent data = result.getData();
-                            String pc = data.getStringExtra(ON_ACT_RSLT_PATAA_DATA);
-                            if (pc != null) {
-                                getPataadetail(pc);
-                            }
-                        }
-                    }
-                });
+        this.apikey = apikey;
         return this;
     }
 
-    public AppCompatActivity getCurrentActivity() {
+    public PataaAutoFillView setCurrentActivity(Activity activity) {
+        this.activity = activity;
+        return this;
+    }
+
+    public Activity getCurrentActivity() {
         if (activity == null) {
             Logger.e("Current activity object is required please se the data on \nsetCurrentActivity(ACTIVITY);");
             return null;
@@ -115,6 +126,7 @@ public class PataaAutoFillView extends FrameLayout {
                 handler.removeCallbacks(runnable);
                 btnAutoFill.performClick();
                 btnAddAddress.setVisibility(GONE);
+                hideCursor();
             }
         }
     }
@@ -151,8 +163,10 @@ public class PataaAutoFillView extends FrameLayout {
         editText = inflatedView.findViewById(R.id.edtPataaEntry);
         View edtCaret = inflatedView.findViewById(R.id.edtCaret);
         View tvClickHere = inflatedView.findViewById(R.id.tvClickHere);
-        View edtHint = inflatedView.findViewById(R.id.edtHint);
-        View tvCreateNow = inflatedView.findViewById(R.id.tvCreateNow);
+         edtHint = inflatedView.findViewById(R.id.edtHint);
+         edtHint2 = inflatedView.findViewById(R.id.edtHint2);
+         tvCreateNow = inflatedView.findViewById(R.id.tvCreateNow);
+        tvErrorMessage = inflatedView.findViewById(R.id.tvErrorMessage);
         btnAddAddress = inflatedView.findViewById(R.id.btnAddAddress);
         btnCrossPataaNotFound = inflatedView.findViewById(R.id.btnCrossPataaNotFound);
         btnGreenTickPataaFound = inflatedView.findViewById(R.id.btnGreenTickPataaFound);
@@ -187,6 +201,24 @@ public class PataaAutoFillView extends FrameLayout {
         });
 
         addFiltersToEditText(editText);
+        editText.setOnFocusChangeListener(new OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+
+                if(b)
+                {
+                    if (edtHint != null) {
+                        edtHint.setVisibility(GONE);
+                    }
+                    if (edtHint2 != null && editText.getText().toString().trim().length()<1) {
+                        edtHint2.setVisibility(VISIBLE);
+                    }
+                } else if (editText.getText().toString().trim().length() > 0){
+                    edtHint2.setVisibility(GONE);
+                    edtHint.setVisibility(GONE);
+                }
+            }
+        });
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -196,8 +228,8 @@ public class PataaAutoFillView extends FrameLayout {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 try {
-                    if (edtHint != null) {
-                        edtHint.setVisibility(charSequence.length() > 0 ? GONE : VISIBLE);
+                    if (edtHint2 != null) {
+                        edtHint2.setVisibility(charSequence.length() > 0 ? GONE : VISIBLE);
                     }
 
                     handler.removeCallbacks(runnable);
@@ -229,20 +261,70 @@ public class PataaAutoFillView extends FrameLayout {
             }
         });
 
+        //########## animation ##############//
+        TextSwitcher simpleTextSwitcher = inflatedView. findViewById(R.id.simpleTextSwitcher);
+        // Set the ViewFactory of the TextSwitcher that will create TextView object when asked
+        simpleTextSwitcher.setFactory(new ViewSwitcher.ViewFactory() {
+
+            public View makeView() {
+                // TODO Auto-generated method stub
+                // create a TextView
+                TextView t = new TextView(context);
+                // set the gravity of text to top and center horizontal
+//                t.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL);
+                // set displayed text size
+                t.setTextSize(15);
+                return t;
+            }
+        });
+
+        // Declare in and out animations and load them using AnimationUtils class
+        Animation in = AnimationUtils.loadAnimation(context, R.anim.bottom_up);
+        Animation out = AnimationUtils.loadAnimation(context, R.anim.bottom_up2);
+
+        // set the animation type to TextSwitcher
+        simpleTextSwitcher.setInAnimation(in);
+        simpleTextSwitcher.setOutAnimation(out);
+        final Handler handler = new Handler();
+        final int delay = 1500; // 1000 milliseconds == 1 second
+//        simpleTextSwitcher.setCurrentText("Enter Pataa");
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                handler.postDelayed(this, delay);
+                currentIndex++;
+                // If index reaches maximum then reset it
+                if (currentIndex == messageCount)
+                    currentIndex = 0;
+                simpleTextSwitcher.setText(strings[currentIndex]);
+            }
+        }, delay);
+
     }
 
     public String getSha1() {
         if (!Utill.isNotNullOrEmpty(sha1)) {
             sha1 = getAppHash(getCurrentActivity());
         }
+        Log.e("SHA1", sha1);
         return sha1;
     }
 
     private void callCreatePataa() {
         if (getCurrentActivity() != null) {
             String url = vContainer.getContext().getString(Utill.getMetaBoolean(vContainer.getContext(), metaEnableDevelopmentKey()) ? R.string.create_pataa_web_url_development : R.string.create_pataa_web_url);
-            Intent intent = CreatePataaActivity.createPataa(vContainer.getContext(), url, getMeta(getContext(), metaClientKey()));
-            launchSomeActivity.launch(intent);
+            Intent intent = CreatePataaActivity.createPataa(vContainer.getContext(), url, getMeta(getContext(), metaClientKey()), new DialogCallback() {
+                @Override
+                public void Response(String pataa) {
+                    activity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            getPataadetail(pataa);
+                        }
+                    });
+                }
+            });
+            activity.startActivityForResult(intent, 200);
+
         }
     }
 
@@ -285,11 +367,16 @@ public class PataaAutoFillView extends FrameLayout {
 
     public void getPataadetail(EditText editText) {
         if (getCurrentActivity() == null) return;
+        Resources appR = activity.getResources();
+        CharSequence txt = appR.getText(appR.getIdentifier("app_name",
+                "string", activity.getPackageName()));
 
         Api.getApi(getContext()).getPataaDetail(
-                getMeta(getContext(), metaClientKey()),
-                editText.getText().toString().trim().toUpperCase(),
-                getSha1()
+                apikey.length() == 0 ? getMeta(getContext(), metaClientKey()) : apikey,
+                editText.getText().toString().trim().toUpperCase(), "android",
+                txt.toString(),
+                activity.getPackageName(),
+                getSha1().toUpperCase()
         ).enqueue(new Callback<GetPataaDetailResponse>() {
 
             @Override
@@ -297,14 +384,20 @@ public class PataaAutoFillView extends FrameLayout {
                 try {
                     Logger.e("request : " + new Gson().toJson(call.request().body()));
                     Logger.e("api data");
-                    Logger.e(response.body().getMsg());
+//                    Logger.e(response.body().getMsg());
                     Logger.e(new Gson().toJson(response.body()));
-
-                    if (response.body().getStatus() == 200) {
+                    if (response.body().getStatus() == PataaErrorCodes.PATAA_FOUND.getErrorCode()) {
                         setPataaDetail(response.body());
-                    } else if (response.body().getStatus() == 204) {
+                    } else if (response.body().getStatus() == PataaErrorCodes.PATAA_NOT_FOUND.getErrorCode()) {
                         setPataaDetailNotFound(response.body());
+                    } else if (response.body().getStatus() == PataaErrorCodes.PATAA_ORIGIN_MISMATCHED.getErrorCode()) {
+                        setErrorWithoutAction(response.body().getMsg(), response.body().getStatus());
+                    } else if (response.body().getStatus() == PataaErrorCodes.PATAA_LIMIT_EXIST.getErrorCode()) {
+                        setErrorWithoutAction(response.body().getMsg(), response.body().getStatus());
+                    } else if (response.body().getStatus() == PataaErrorCodes.PATAA_INVALID_KEY.getErrorCode()) {
+                        setErrorWithoutAction(response.body().getMsg(), response.body().getStatus());
                     } else {
+                        if (address!=null)address.onError(response.body().getStatus(), response.body().getMsg());
                         Logger.e(response.body().getMsg());
                         Logger.e(response.body());
                     }
@@ -342,6 +435,7 @@ public class PataaAutoFillView extends FrameLayout {
 
                 btnGreenTickPataaFound.setVisibility(VISIBLE);
                 vValidPataa.setVisibility(VISIBLE);
+                hideCursor();
             }
             address.onPataaFound(pataaDetail.getResult().getUser(), pataaDetail.getResult().getPataa());
         } catch (Exception e) {
@@ -350,10 +444,40 @@ public class PataaAutoFillView extends FrameLayout {
         }
     }
 
+    private void hideCursor() {
+        editText.clearFocus();
+        if (editText.getText().toString().trim().length() > 0){
+            edtHint2.setVisibility(GONE);
+            edtHint.setVisibility(GONE);
+        }
+    }
+
     private void setPataaDetailNotFound(GetPataaDetailResponse pataaDetail) {
         try {
             Drawable drawableNotFound = vContainer.getContext().getDrawable(R.drawable.bg_red_border);
             vContainer.setBackground(drawableNotFound);
+            vCreateNow.setVisibility(VISIBLE);
+            tvCreateNow.setVisibility(VISIBLE);
+            btnCrossPataaNotFound.setVisibility(VISIBLE);
+
+            vClickHere.setVisibility(GONE);
+            vValidPataa.setVisibility(GONE);
+            btnAutoFill.setVisibility(GONE);
+            btnGreenTickPataaFound.setVisibility(GONE);
+            btnAddAddress.setVisibility(GONE);
+
+            address.onPataaNotFound(pataaDetail);
+        } catch (Exception e) {
+            Logger.e(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    private void setErrorWithoutAction(String message, int errorCode) {
+        try {
+            Drawable drawableNotFound = vContainer.getContext().getDrawable(R.drawable.bg_red_border);
+            vContainer.setBackground(drawableNotFound);
+            tvCreateNow.setVisibility(INVISIBLE);
             vCreateNow.setVisibility(VISIBLE);
             btnCrossPataaNotFound.setVisibility(VISIBLE);
 
@@ -363,7 +487,7 @@ public class PataaAutoFillView extends FrameLayout {
             btnGreenTickPataaFound.setVisibility(GONE);
             btnAddAddress.setVisibility(GONE);
 
-            address.onPataaNotFound(pataaDetail.getMsg());
+            tvErrorMessage.setText(getResources().getString(R.string.pataa_is_disabled_please_fill_up_your_address_details_manually));
         } catch (Exception e) {
             Logger.e(e.getMessage());
             e.printStackTrace();

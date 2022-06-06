@@ -1,15 +1,11 @@
 package com.pataa.auto_fill_sdk;
 
-import static com.pataa.sdk.AppConstants.ON_ACT_RSLT_PATAA_DATA;
-import static com.pataa.sdk.AppConstants.REQUEST_KEY_CREATE_PATAA;
-
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.pataa.sdk.GetPataaDetailResponse;
 import com.pataa.sdk.OnAddress;
 import com.pataa.sdk.Pataa;
 import com.pataa.sdk.PataaAutoFillView;
@@ -29,13 +25,18 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onPataaNotFound(String message) {
-
+                    public void onPataaNotFound(GetPataaDetailResponse response) {
+//                        Toast.makeText(MainActivity.this, response.getMsg().toString(), Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onPataaFound(User user, Pataa response) {
                         Toast.makeText(MainActivity.this, user.getFirst_name() + " : " + response.getFormattedAddress(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(int statusCode, String message) {
+                        Toast.makeText(MainActivity.this, statusCode + " : " + message, Toast.LENGTH_SHORT).show();
                     }
                 });
     }

@@ -3,6 +3,7 @@
     <string name="create_pataa_web_url_development">https://pataa.in/create-pataa/create-pataa.html</string>
 
     <string name="Enter_Pataa_eg_KUMAR100">Enter Pataa eg ^KUMAR100</string>
+    <string name="Enter_Pataa">Enter Pataa</string>
     <string name="Add_Address">Add Address</string>
     <string name="Autofill">Autofill</string>
     <string name="or">or</string>
@@ -14,7 +15,7 @@
     <string name="create_now"><b><u>Create now</u></b></string>
 <!--    <string name="create_pataa_web_url">https://wp.pataa.in/</string>-->
     <string name="after_click_here">to save location on map for faster services</string>
-
+    <string name="pataa_is_disabled_please_fill_up_your_address_details_manually">Pataa is Disabled! Please fill up your address details manually.</string>
 
     <string name="Pataa_is_your_unique_personalized_"><b>Pataa</b> is your unique &amp; personalized</string>
     <string name="Digital_Address_Code_">Digital Address Code</string>

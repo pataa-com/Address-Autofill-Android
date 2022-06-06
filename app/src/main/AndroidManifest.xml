@@ -27,5 +27,10 @@
         <meta-data
             android:name="pataa.autofill.sdk.EnableLogger"
             android:value="true" />
+
+        <meta-data
+            android:name="pataa.autofill.sdk.EnableDevelopment"
+            android:value="false" />
+
     </application>
 </manifest>
