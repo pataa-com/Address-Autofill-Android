@@ -25,9 +25,10 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onPataaNotFound(GetPataaDetailResponse response) {
-//                        Toast.makeText(MainActivity.this, response.getMsg().toString(), Toast.LENGTH_SHORT).show();
+                    public void onPataaNotFound(String message) {
+
                     }
+
 
                     @Override
                     public void onPataaFound(User user, Pataa response) {

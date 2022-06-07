@@ -92,8 +92,8 @@ public class Utill {
         TextView tvPataaOne = view.findViewById(R.id.tvPataaOne);
 
 //        if (showUnderLineOnPataa) {
-//            tvPataaOne.setText(tvPataaOne.getText().toString());
-//            tvPataaTwo.setText(tvPataaTwo.getText().toString());
+        tvPataaOne.setText(tvPataaOne.getText().toString());
+        tvPataaTwo.setText(tvPataaTwo.getText().toString());
 //        }
 
         editText.setText("^KUMAR100");

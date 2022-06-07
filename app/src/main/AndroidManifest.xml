@@ -30,7 +30,7 @@
 
         <meta-data
             android:name="pataa.autofill.sdk.EnableDevelopment"
-            android:value="false" />
+            android:value="true" />
 
     </application>
 </manifest>
