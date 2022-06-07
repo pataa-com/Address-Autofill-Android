@@ -1,5 +1,4 @@
 <resources>
     <string name="app_name">pataa_auto_fill_sdk</string>
-    <string name="PATAA_API_KEY"></string><!--production-->
-
+    <string name="PATAA_API_KEY"></string>
 </resources>

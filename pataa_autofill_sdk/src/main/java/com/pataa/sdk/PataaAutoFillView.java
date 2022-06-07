@@ -72,7 +72,7 @@ public class PataaAutoFillView extends FrameLayout {
     private TextView tvShipTo;
     private AlertDialog whatIsPataaDialog;
     private EditText editText;
-    private View edtHint2,edtHint;
+    private View edtHint2, edtHint;
     private View btnAutoFill;
     private Context context;
     private String apikey = "";
@@ -215,12 +215,11 @@ public class PataaAutoFillView extends FrameLayout {
             @Override
             public void onFocusChange(View view, boolean b) {
 
-                if(b)
-                {
+                if (b) {
                     if (edtHint != null) {
                         edtHint.setVisibility(GONE);
                     }
-                    if (edtHint2 != null && editText.getText().length()==0) {
+                    if (edtHint2 != null && editText.getText().length() == 0) {
                         edtHint2.setVisibility(VISIBLE);
                     }
                     refreshViewChildrenLayout();
@@ -271,7 +270,7 @@ public class PataaAutoFillView extends FrameLayout {
         });
 
         //########## animation ##############//
-        TextSwitcher simpleTextSwitcher = inflatedView. findViewById(R.id.simpleTextSwitcher);
+        TextSwitcher simpleTextSwitcher = inflatedView.findViewById(R.id.simpleTextSwitcher);
         // Set the ViewFactory of the TextSwitcher that will create TextView object when asked
         simpleTextSwitcher.setFactory(new ViewSwitcher.ViewFactory() {
 
@@ -336,7 +335,6 @@ public class PataaAutoFillView extends FrameLayout {
 
                         }
                     });
-
 
 
                 }
@@ -415,7 +413,8 @@ public class PataaAutoFillView extends FrameLayout {
                     } else if (response.body().getStatus() == PataaErrorCodes.PATAA_INVALID_KEY.getErrorCode()) {
                         setErrorWithoutAction(response.body().getMsg(), response.body().getStatus());
                     } else {
-                        if (address!=null)address.onError(response.body().getStatus(), response.body().getMsg());
+                        if (address != null)
+                            address.onError(response.body().getStatus(), response.body().getMsg());
                         Logger.e(response.body().getMsg());
                         Logger.e(response.body());
                     }
@@ -450,7 +449,7 @@ public class PataaAutoFillView extends FrameLayout {
                 btnCrossPataaNotFound.setVisibility(GONE);
                 btnAutoFill.setVisibility(GONE);
                 vClickHere.setVisibility(GONE);
-
+                editText.setSelection(editText.getText().toString().length());
                 btnGreenTickPataaFound.setVisibility(VISIBLE);
                 vValidPataa.setVisibility(VISIBLE);
             }
@@ -526,7 +525,7 @@ public class PataaAutoFillView extends FrameLayout {
     }
 
 
-    private void refreshViewChildrenLayout(){
+    private void refreshViewChildrenLayout() {
         View view = this;
         view.measure(
                 View.MeasureSpec.makeMeasureSpec(view.getMeasuredWidth(), View.MeasureSpec.EXACTLY),
