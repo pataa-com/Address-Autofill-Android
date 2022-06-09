@@ -36,7 +36,7 @@
 **Step 2. Add the dependency**
 
 	dependencies {
-	        implementation 'com.github.pataa-com:Address-Autofill-Android:v1.0.5'
+	        implementation 'com.github.pataa-com:Address-Autofill-Android:v1.0.6'
 	}
 
 
