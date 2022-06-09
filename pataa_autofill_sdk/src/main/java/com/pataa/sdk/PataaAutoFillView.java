@@ -15,6 +15,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.ApplicationInfo;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -381,16 +382,19 @@ public class PataaAutoFillView extends FrameLayout {
         }
     }
 
+    public String getApplicationName(Context context) {
+        ApplicationInfo applicationInfo = context.getApplicationInfo();
+        int stringId = applicationInfo.labelRes;
+        return stringId == 0 ? applicationInfo.nonLocalizedLabel.toString() : context.getString(stringId);
+    }
+
     public void getPataadetail(EditText editText) {
         if (getCurrentActivity() == null) return;
-        Resources appR = context.getResources();
-        CharSequence txt = appR.getText(appR.getIdentifier("app_name",
-                "string", context.getPackageName()));
-
+        String app_name = getApplicationName(context);
         Api.getApi(getContext()).getPataaDetail(
                 apikey.length() == 0 ? getMeta(getContext(), metaClientKey()) : apikey,
                 editText.getText().toString().trim().toUpperCase(), "android",
-                txt.toString(),
+                app_name,
                 context.getPackageName(),
                 getSha1().toUpperCase()
         ).enqueue(new Callback<GetPataaDetailResponse>() {
