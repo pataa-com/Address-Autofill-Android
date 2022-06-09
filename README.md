@@ -137,6 +137,17 @@
         
 **Solution** : Try to search with valid pataa code like - KUMAR100, SINGH221, Because your searched pataa code is not created on pataa platform yet.
 
+***
+        E/PATAA_SDK_LOGS: {"msg":"Pataa Search Limit Over","status":400}
+        E/PATAA_SDK_LOGS: Pataa Search Limit Over
+
+***
+        E/PATAA_SDK_LOGS: {"msg":"Invalid API key or App key,you are not authorized.Please provide a valid key","status":400}
+        E/PATAA_SDK_LOGS: Invalid API key or App key,you are not authorized.Please provide a valid key
+
+
+
+
 ***        
 **For any other error** : [Please refer the document](https://docs.pataa.com/refrence/#error-handling) 
 
