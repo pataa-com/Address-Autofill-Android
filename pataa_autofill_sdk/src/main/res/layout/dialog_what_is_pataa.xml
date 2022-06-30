@@ -8,10 +8,10 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="@dimen/_10sdp_pataa"
         android:layout_marginTop="@dimen/_15sdp_pataa"
         android:layout_marginBottom="@dimen/_15sdp_pataa"
         app:cardBackgroundColor="@color/color_00000000"
+        app:cardCornerRadius="@dimen/_10sdp_pataa"
         tools:ignore="MissingConstraints">
 
         <RelativeLayout
@@ -60,8 +60,8 @@
                         android:layout_marginTop="@dimen/_10sdp_pataa"
                         android:fontFamily="@font/mulish_medium"
                         android:gravity="center"
-                        android:singleLine="true"
                         android:paddingHorizontal="@dimen/_12sdp_pataa"
+                        android:singleLine="true"
                         android:text="@string/Pataa_is_your_unique_personalized_"
                         android:textColor="@color/color_181B21"
                         android:textSize="@dimen/pataa_txt_size_15_sp"
@@ -74,8 +74,8 @@
                         android:id="@+id/rlPlate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
                         android:layout_below="@+id/tvUniqueTitle"
+                        android:layout_centerHorizontal="true"
                         android:layout_marginHorizontal="@dimen/_45sdp_pataa"
                         android:layout_marginTop="@dimen/_3sdp_pataa"
                         app:layout_constraintTop_toBottomOf="@+id/tvUniqueTitle"
@@ -155,8 +155,8 @@
                         android:id="@+id/rlInfoWindow"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
                         android:layout_below="@+id/tvContainsTag"
+                        android:layout_centerHorizontal="true"
                         android:layout_marginHorizontal="@dimen/_12sdp_pataa"
                         android:layout_marginTop="@dimen/_10sdp_pataa"
                         android:background="@drawable/ic_arrow_box_bg"
@@ -305,10 +305,10 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvPataaCreateTag"
-                        android:layout_centerHorizontal="true"
-                        android:layout_below="@+id/rlInfoWindow"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_below="@+id/rlInfoWindow"
+                        android:layout_centerHorizontal="true"
                         android:layout_marginTop="@dimen/_15sdp_pataa"
                         android:background="@color/color_ffffff"
                         android:fontFamily="@font/mulish_medium"
@@ -324,11 +324,11 @@
                         tools:ignore="MissingConstraints" />
 
                     <LinearLayout
-                        android:layout_centerHorizontal="true"
-                        android:layout_below="@+id/tvPataaCreateTag"
                         android:id="@+id/llSharing"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvPataaCreateTag"
+                        android:layout_centerHorizontal="true"
                         android:layout_marginTop="@dimen/_10sdp_pataa"
                         android:orientation="vertical"
                         android:paddingHorizontal="@dimen/_30sdp_pataa"
@@ -470,15 +470,15 @@
 
 
                     <LinearLayout
-                        android:gravity="center_vertical"
                         android:id="@+id/llPataaBenefit"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-
                         android:layout_below="@+id/llSharing"
+
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="@dimen/_15sdp_pataa"
                         android:background="@color/color_FFCC4B"
+                        android:gravity="center_vertical"
                         android:orientation="vertical"
                         android:paddingLeft="@dimen/_15sdp_pataa"
                         android:paddingTop="@dimen/_15sdp_pataa"
@@ -526,9 +526,9 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_marginTop="@dimen/_1sdp_pataa"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_1sdp_pataa"
                             android:orientation="horizontal">
 
                             <androidx.appcompat.widget.AppCompatTextView
@@ -555,9 +555,9 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_marginTop="@dimen/_1sdp_pataa"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_1sdp_pataa"
                             android:orientation="horizontal">
 
                             <androidx.appcompat.widget.AppCompatTextView
@@ -584,9 +584,9 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_marginTop="@dimen/_1sdp_pataa"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_1sdp_pataa"
                             android:orientation="horizontal">
 
                             <androidx.appcompat.widget.AppCompatTextView
@@ -617,9 +617,9 @@
 
                     <LinearLayout
                         android:id="@+id/bottom"
-                        android:layout_alignParentBottom="true"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
                         android:orientation="horizontal"
                         app:layout_constraintBottom_toBottomOf="parent" />
 
@@ -680,7 +680,8 @@
 
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:visibility="gone">
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"

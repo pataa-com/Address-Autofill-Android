@@ -26,18 +26,19 @@ public class AlphaNumericAndDashInputOnlyA2ZFilter implements InputFilter {
                 builder.append(input_char);
 
                 // OTHERWISE SPECIAL CHARACTER
-            } else if (dend != 0 && input_char == '-' && !dest.toString().contains("-")) {
-                builder.append(input_char);
-                System.out.println(" dash for extension ");
             }
+//            else if (dend != 0 && input_char == '-' && !dest.toString().contains("-")) {
+//                builder.append(input_char);
+//                System.out.println(" dash for extension ");
+//            }
 
             // Carret Symbol for Pataa
-            else if (input_char == '^' && dstart==0) {
-                builder.append(input_char);
-                System.out.println(" careat for Pataa ");
-            } else {
-                System.out.println(" Special Character ");
-            }
+//            else if (input_char == '^' && dstart==0) {
+//                builder.append(input_char);
+//                System.out.println(" careat for Pataa ");
+//            } else {
+//                System.out.println(" Special Character ");
+//            }
         }
 
         // If all characters are valid, return null, otherwise only return the filtered characters
