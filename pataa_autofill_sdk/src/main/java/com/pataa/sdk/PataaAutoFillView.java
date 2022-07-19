@@ -43,6 +43,7 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -62,7 +63,6 @@ public class PataaAutoFillView extends FrameLayout {
     private Activity activity;
     private View tvCreateNow;
     private TextView tvErrorMessage;
-
     private View vCreateNow;
     private View vContainer;
     private View vValidPataa;
@@ -77,6 +77,7 @@ public class PataaAutoFillView extends FrameLayout {
     private View btnAutoFill;
     private Context context;
     private String apikey = "";
+
 
     public PataaAutoFillView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
@@ -96,6 +97,49 @@ public class PataaAutoFillView extends FrameLayout {
         this.context = context;
         initView();
     }
+
+    @Override
+    protected void onVisibilityChanged(@NonNull View changedView, int visibility) {
+        super.onVisibilityChanged(changedView, visibility);
+        if (visibility == View.VISIBLE) {
+            ResetView();
+        }
+    }
+
+    private void ResetView() {
+        if (editText.getText().toString().length() == 0) {
+            if (editText.hasFocus()) {
+                edtHint.setVisibility(GONE);
+                edtHint2.setVisibility(VISIBLE);
+            } else {
+                edtHint.setVisibility(VISIBLE);
+                edtHint2.setVisibility(GONE);
+            }
+        } else {
+            edtHint.setVisibility(GONE);
+            edtHint2.setVisibility(GONE);
+        }
+        refreshViewChildrenLayout();
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasWindowFocus) {
+        super.onWindowFocusChanged(hasWindowFocus);
+        if (hasWindowFocus) {
+            ResetView();
+        }
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+    }
+
 
     public PataaAutoFillView setAddressCallBack(OnAddress onAddress) {
         this.address = onAddress;
@@ -330,17 +374,15 @@ public class PataaAutoFillView extends FrameLayout {
 
                         @Override
                         public void run() {
-
                             getPataadetail(pataa);
                             // Stuff that updates the UI
-
                         }
                     });
 
 
                 }
             });
-            activity.startActivityForResult(intent, 200);
+            activity.startActivity(intent);
 
         }
     }

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">pataa_auto_fill_sdk</string>
-    <string name="PATAA_API_KEY">JJ3cGSNdUFLvR+pXtzb6r2QHTSSWwzoZKH1kCdzWKVg=</string>
+<!--    <string name="PATAA_API_KEY">zqJBLAZzI7LVveLrMcA7PvDY/Yrb8rOENKxI0kOmUo0=</string>// live-->
+    <string name="PATAA_API_KEY">JJ3cGSNdUFLvR+pXtzb6r2QHTSSWwzoZKH1kCdzWKVg=</string>// development
 </resources>

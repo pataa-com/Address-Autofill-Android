@@ -7,11 +7,15 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-    <application android:usesCleartextTraffic="true">
+    <application
+        android:allowBackup="false"
+        android:usesCleartextTraffic="true">
         <activity
             android:name="com.pataa.sdk.CreatePataaActivity"
             android:exported="false"
             android:theme="@style/Theme.MySDKApplication" />
+
+
     </application>
 
 </manifest>

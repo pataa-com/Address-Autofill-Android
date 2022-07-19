@@ -3,6 +3,7 @@ package com.pataa.auto_fill_sdk;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.pataa.sdk.GetPataaDetailResponse;
@@ -32,7 +33,16 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onPataaFound(User user, Pataa response) {
-                        Toast.makeText(MainActivity.this, user.getFirst_name() + " : " + response.getFormattedAddress(), Toast.LENGTH_SHORT).show();
+                        //  Toast.makeText(MainActivity.this, user.getFirst_name() + " : " + response.getFormattedAddress(), Toast.LENGTH_SHORT).show();
+                        StringBuilder builder = new StringBuilder();
+                        builder.append("F Name: " + user.getFirst_name() + "\n");
+                        builder.append("L Name: " + user.getLast_name() + "\n");
+                        builder.append("Mobile: " + user.getMobile() + "\n");
+                        builder.append("Email: " + user.getEmail_id() + "\n");
+                        builder.append("CountryCode: " + user.getCountry_code() + "\n");
+                        builder.append("Address: " + response.getFormattedAddress() + "\n");
+                        ((TextView) findViewById(R.id.result)).setText(builder.toString());
+
                     }
 
                     @Override
