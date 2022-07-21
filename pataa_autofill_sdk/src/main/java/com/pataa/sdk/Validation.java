@@ -20,12 +20,17 @@ public class Validation {
             }
         }
 
+        if (pataaCode.length() >= 7) {
+            return true;
+        }
+
         if (isValidPataa(pataaCode)) {
             return true;
         } else {
             return false;
         }
     }
+
     private static boolean isValidPataa(String s) {
         String n = ".*[0-9].*";
         String a = ".*[A-Z].*";
