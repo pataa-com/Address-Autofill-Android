@@ -5,11 +5,9 @@ plugins {
 
 android {
     compileSdk 32
-
     defaultConfig {
         minSdk 21
         targetSdk 23
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
@@ -28,6 +26,13 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    publishing {
+        singleVariant("release") {
+            // if you don't want sources/javadoc, remove these lines
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
 }
 
 dependencies {
@@ -45,13 +50,14 @@ dependencies {
 
 afterEvaluate {
     publishing {
+
         publications {
 // Creates a Maven publication called "release".
             release(MavenPublication) {
                 from components.release
                 groupId = 'com.pataa.addressautofill'//Application id
                 artifactId = 'pataa_autofill_sdk'//Root project name
-                version = '1.0.0' //Version
+                version = '1.0.1' //Version
             }
         }
     }

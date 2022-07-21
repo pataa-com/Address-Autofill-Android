@@ -27,9 +27,9 @@ public class Validation {
         }
     }
     private static boolean isValidPataa(String s) {
-//        String n = ".*[0-9].*";
+        String n = ".*[0-9].*";
         String a = ".*[A-Z].*";
-        return /*s.matches(n) &&*/ s.matches(a);
+        return s.matches(n) || s.matches(a);
     }
 
 }
