@@ -64,13 +64,12 @@ public class CreatePataaActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inapp_web);
         progressBar = findViewById(R.id.progressBar);
-
+        checkPermissionLocation();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        checkPermissionLocation();
     }
 
     @Override
@@ -90,8 +89,15 @@ public class CreatePataaActivity extends Activity {
         webSettings.setLoadWithOverviewMode(true);
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
         webSettings.setGeolocationEnabled(true);
+        webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
+        webView.getSettings().setGeolocationDatabasePath(getFilesDir().getPath());
         webView.loadUrl(webUrl);
         webView.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
+                android.util.Log.d("WebView", consoleMessage.message());
+                return true;
+            }
 
             public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {
                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M ||
